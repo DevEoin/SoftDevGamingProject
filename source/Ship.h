@@ -1,15 +1,16 @@
 #include <iostream>
 #include <vector>
+#include "Position.h"
 
 class Ship {
     int health;
     char character;
-    std::vector<*Position> positions;
+    std::vector<Position*> positions;
 public:
     Ship(int health, char character);
     char getChar();
     int getHealth();
-    void pushPosition(const *Position newPos);
+    void pushPosition(Position* newPos);
     void hit();
     bool checkForPos(int pos);
 };

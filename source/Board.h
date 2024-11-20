@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include "Ship.h"
 
 class Board {
     int size; // chess board is 8x8
@@ -6,4 +8,4 @@ class Board {
 public:
     Board();
     void printGrid();
-}
+};

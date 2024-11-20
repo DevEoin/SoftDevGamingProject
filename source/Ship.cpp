@@ -2,6 +2,7 @@
 #include <vector>
 #include "Ship.h"
 
+
 Ship::Ship(int health, char character) {
     this->health = health;
     this->character = character;
@@ -19,7 +20,7 @@ char Ship::getChar() {
     return this->character;
 }
 
-void Ship::pushPosition(const *Position newPos) {
+void Ship::pushPosition(Position* newPos) {
     this->positions.push_back(newPos);
 }
 
@@ -29,7 +30,7 @@ void Ship::hit() {
 
 bool Ship::checkForPos(int pos) {
     for(auto shipPos : positions) {
-        if(pos == shipPos.getPos()) {
+        if(pos == shipPos->getPos()) {
             return true;
         }
     }

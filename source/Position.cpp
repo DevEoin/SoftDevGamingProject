@@ -1,5 +1,5 @@
 #include "Position.h"
-#define SIZE = 8
+#define SIZE  10
 
 Position::Position(char xPos, char yPos) {
     this->x = x;

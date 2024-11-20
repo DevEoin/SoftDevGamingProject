@@ -3,10 +3,10 @@
 class Position {
     char x;
     char y;
-    int pos
+    int pos;
 public:
     Position(char xPos, char yPos);
-    int getX();
-    int getY();
+    char getX();
+    char getY();
     int getPos();
 };
