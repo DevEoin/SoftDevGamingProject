@@ -1,12 +1,11 @@
 #include <iostream>
 
 class Position {
-    char x;
-    char y;
-    int pos;
+    int x;
+    int y;
 public:
-    Position(char xPos, char yPos);
-    char getX();
-    char getY();
-    int getPos();
+    Position(int xPos = -1, int yPos = -1);
+    int getX();
+    int getY();
+    void changePosition(int x, int y);
 };

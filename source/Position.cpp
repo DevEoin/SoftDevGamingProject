@@ -1,23 +1,20 @@
 #include "Position.h"
 #define SIZE  10
 
-Position::Position(char xPos, char yPos) {
+Position::Position(int x, int y) {
     this->x = x;
     this->y = y;
-
-    int x1 = '8' - xPos;
-    int y1 = yPos - 'A';
-    pos = x1*SIZE + y1;
 }
 
-char Position::getX() {
+int Position::getX() {
     return this->x;
 }
 
-char Position::getY() {
+int Position::getY() {
     return this->y;
 }
 
-int Position::getPos() {
-    return pos;
+void Position::changePosition(int x, int y) {
+    this->x = x;
+    this->y = y;
 }

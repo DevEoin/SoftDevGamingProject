@@ -8,4 +8,5 @@ class Board {
 public:
     Board();
     void printGrid();
+    void addShip(Ship* newShip);
 };

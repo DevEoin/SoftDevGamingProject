@@ -5,12 +5,12 @@
 class Ship {
     int health;
     char character;
-    std::vector<Position*> positions;
+    std::vector<Position> positions;
 public:
     Ship(int health, char character);
     char getChar();
     int getHealth();
-    void pushPosition(Position* newPos);
+    void pushPosition(Position newPos);
     void hit();
-    bool checkForPos(int pos);
+    bool checkForPos(int x, int y);
 };

@@ -1,4 +1,7 @@
 #include "Board.h"
+#include <iostream>
+
+using std::cout, std::cin, std::endl;
 
 Board::Board() {
     this->size = 10;
@@ -9,56 +12,48 @@ Board::Board() {
 }
 
 void Board::printGrid(){
-  std::cout<<std::endl;
-  std::cout<<" ";
-  int i=1,j;
-
-  std::cout<<std::endl;
-  for(i = 0; i <= 2*size; i++){
-    if(i%2!=0)
-        std::cout<<size - i/2 ;
-    
-    for(j = 0; j <= 2*size; j++){
-      if(i%2==0)
-      {
-        if(j==0)
-            std::cout<<" ";
-        if(j%2==0)
-            std::cout<<" ";
-        else std::cout<<"---";
+  cout<<endl;
+  cout << endl << "   ";
+  for (int i = 0; i < size; i++) {
+      cout << "  " << i << "  ";
+  }
+  cout<< endl << "   ";
+  for (int i = 0; i < this->size; i++) {
+      cout << "-----";
+  }
+  for (int i = 0; i < this->size; i++) {
+      cout << std::endl;
+      cout << i;
+      for (int j = 0; j < this->size; j++) {
+          cout << " | ";
+          bool foundAShip = false;
+          for (auto ship : this->ships) {
+              if (ship != nullptr && ship->checkForPos(i, j)) {
+                  cout << ship->getChar();
+                  foundAShip = true;
+                  break;
+              }
+          }
+          if (!foundAShip) {
+              cout << " ";
+          }
+          cout << " ";
+          if (j == size - 1) {
+              cout << " |";
+          }
       }
-      else{
-        if(j%2==0)
-            std::cout<<"|";
-        else {
-            int pos = i/2*size + j/2;
-            bool foundPiece = false;
-            for (const auto ship : ships)
-            {
-                if (ship->checkForPos(pos))
-                {
-                    std::cout<< " " << ship->getChar()  <<" "; // here is where we print the values i/2*size + j/2 
-                    foundPiece = true;
-                }
-            }   
-            if (!foundPiece)
-            {
-                std::cout<< "   "; 
-            }     
+      std::cout << endl << "   ";
+      for (int k = 0; k < size; k++) {
+          cout << "-----";
+      }
+  }
+}
+
+void Board::addShip(Ship* newShip) {
+    for (int i = 0; i < ships.size(); i++) {
+        if (ships[i] == nullptr) {
+            ships[i] = newShip;
+            break;
         }
-      }
     }
-
-    std::cout<<std::endl;
-
-  }
-  std::cout<<" ";
-
-  // print last row with numbers
-  for(j = 0, i = 0; j <= 4*size; j++){
-    if(j%4==2)
-        std::cout<<(char)('A' + i++); // printing letters on the left
-    else std::cout<<" ";
-  }
-  std::cout<<std::endl;
 }
