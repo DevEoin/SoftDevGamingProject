@@ -9,6 +9,10 @@ Board::Board() {
     for(auto ship : ships) {
         ship = nullptr;
     }
+    hits.resize(10);
+    for (auto column : hits) {
+        column.resize(10);
+    }
 }
 
 void Board::printGrid(){
@@ -56,4 +60,15 @@ void Board::addShip(Ship* newShip) {
             break;
         }
     }
+}
+
+bool Board::hitPos(int x, int y) {
+    for (auto ship : ships) {
+        if (ship->checkForPos(x, y)) {
+            hits[x][y] = 'X';
+            return true;
+        }
+    }
+    hits[x][y] = 'O';
+    return false;
 }
