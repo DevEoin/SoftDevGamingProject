@@ -10,4 +10,5 @@ public:
     char getChar();
     int getHealth();
     void pushPosition(const *Position newPos);
+    void hit();
 };

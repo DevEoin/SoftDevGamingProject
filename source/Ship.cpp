@@ -6,6 +6,9 @@ Ship::Ship(int health, char character) {
     this->health = health;
     this->character = character;
     this->positions.resize(health);
+    for(auto variable : positions) {
+        variable = nullptr;
+    }
 }
 
 int Ship::getHealth() {
@@ -18,4 +21,8 @@ char Ship::getChar() {
 
 void Ship::pushPosition(const *Position newPos) {
     this->positions.push_back(newPos);
+}
+
+void Ship::hit() {
+    health--;
 }

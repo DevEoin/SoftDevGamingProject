@@ -2,6 +2,7 @@
 
 Board::Board() {
     this->size = 10;
+    ships.resize(5);
     for(auto ship : ships) {
         ship = nullptr;
     }
@@ -32,11 +33,11 @@ void Board::printGrid(){
         else {
             int pos = i/2*size + j/2;
             bool foundPiece = false;
-            for (const auto piece : pieces)
+            for (const auto ship : ships)
             {
-                if (piece->GetPos() == pos )
+                if (ship->GetPos() == pos )
                 {
-                    std::cout<< " " << piece->GetName()  <<" "; // here is where we print the values i/2*size + j/2 
+                    std::cout<< " " << ship->getChar()  <<" "; // here is where we print the values i/2*size + j/2 
                     foundPiece = true;
                 }
             }   
