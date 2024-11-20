@@ -1,10 +1,12 @@
 #include <iostream>
 
 class Position {
-    int x;
-    int y;
+    char x;
+    char y;
+    int pos
 public:
-    Position(int x, int y);
+    Position(char x, char y);
     int getX();
     int getY();
+    int getPos();
 };

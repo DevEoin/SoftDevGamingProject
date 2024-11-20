@@ -11,4 +11,5 @@ public:
     int getHealth();
     void pushPosition(const *Position newPos);
     void hit();
+    bool checkForPos(int pos);
 };

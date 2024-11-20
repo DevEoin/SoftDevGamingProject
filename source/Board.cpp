@@ -35,7 +35,7 @@ void Board::printGrid(){
             bool foundPiece = false;
             for (const auto ship : ships)
             {
-                if (ship->GetPos() == pos )
+                if (ship->checkForPos(pos))
                 {
                     std::cout<< " " << ship->getChar()  <<" "; // here is where we print the values i/2*size + j/2 
                     foundPiece = true;

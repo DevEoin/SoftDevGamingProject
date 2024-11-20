@@ -26,3 +26,12 @@ void Ship::pushPosition(const *Position newPos) {
 void Ship::hit() {
     health--;
 }
+
+bool Ship::checkForPos(int pos) {
+    for(auto shipPos : positions) {
+        if(pos == shipPos.getPos()) {
+            return true;
+        }
+    }
+    return false;
+}
