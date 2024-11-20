@@ -1,7 +1,7 @@
 #include "Position.h"
 #define SIZE = 8
 
-Position::Position(char x, char y) {
+Position::Position(char xPos, char yPos) {
     this->x = x;
     this->y = y;
 

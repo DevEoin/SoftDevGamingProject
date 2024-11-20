@@ -5,7 +5,7 @@ class Position {
     char y;
     int pos
 public:
-    Position(char x, char y);
+    Position(char xPos, char yPos);
     int getX();
     int getY();
     int getPos();
