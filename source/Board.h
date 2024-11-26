@@ -12,6 +12,6 @@ public:
     void printGridHits();
     void addShip(Ship* newShip);
     bool hitPos(int x, int y);
-    void setPositions(std::vector<std::vector<Position>> positions);
+    void setPositions(std::vector<Position> positions, int i);
     int getShipsLeft();
 };

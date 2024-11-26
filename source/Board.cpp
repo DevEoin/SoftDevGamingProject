@@ -120,11 +120,9 @@ bool Board::hitPos(int x, int y) {
     return false;
 }
 
-void Board::setPositions(std::vector<std::vector<Position>> positions) {
-    for (int i = 0; i < ships.size(); i++) {
-        for (int j = 0; j < ships[i]->getHealth(); j++) {
-            ships[i]->pushPosition(positions[i][j]);
-        }
+void Board::setPositions(std::vector<Position> positions, int i) {
+    for (int j = 0; j < ships[i]->getHealth(); j++) {
+        ships[i]->pushPosition(positions[j]);
     }
 }
 

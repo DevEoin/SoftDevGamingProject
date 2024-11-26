@@ -18,14 +18,13 @@ bool Player::recieveHit(int x, int y) {
 void Player::placeShips() {
 	bool valid = false;
 	int healths[5] = { 2, 3, 3, 4, 5 };
-	std::vector<std::vector<Position>> positions = std::vector<std::vector<Position>>(5);
 	for (int i = 0; i < 5; i++) {
 		valid = false;
-		positions[i] = std::vector<Position>(healths[i]);
 		std::vector<Position> temporaryP = std::vector<Position>(healths[i]);
 		while (!valid) {
+			bool outOfBounds = true;
 			for (int j = 0; j < 1; j++) {
-				bool outOfBounds = true;
+				
 				int x, y, xL, yL;
 				while (outOfBounds) {
 					std::cout << this->name <<" please enter the x value of the " << j + 1 << ". position of a " << healths[i] << " health ship: ";
@@ -44,6 +43,7 @@ void Player::placeShips() {
 					}
 					else {
 						std::cout << "Position out of bounds, please try again" << std::endl;
+						outOfBounds = true;
 					}
 				}
 				for (int k = 0; k < healths[i]; k++) {
@@ -64,51 +64,17 @@ void Player::placeShips() {
 					}
 				}
 			}
-			Position previous{};
-			bool mistake = false;
-			for (auto p : temporaryP) {
-				if (previous.getX() == -1) {
-					previous.changePosition(temporaryP[0].getX(), temporaryP[0].getY());
-				}
-				else {
-					if (p.getX() != previous.getX() && p.getY() != previous.getY()) {
-						mistake = true;
-						break;
-					}
-					else if ((p.getX() == previous.getX() && (p.getY() == previous.getY() + 1 || p.getY() == previous.getY() - 1))
-						|| (p.getY() == previous.getY() && (p.getX() == previous.getX() + 1 || p.getX() == previous.getX() - 1))) {
-						
-					}
-					else {
-						bool nothing = false;
-						for (auto p2 : temporaryP) {
-							if ((p.getX() == p2.getX() && (p.getY() == p2.getY() + 1 || p.getY() == p2.getY() - 1))
-								|| (p.getY() == p2.getY() && (p.getX() == p2.getX() + 1 || p.getX() == p2.getX() - 1))) {
-								mistake = false;
-								break;
-							}
-							nothing = true;
-						}
-						if (nothing) {
-							mistake = true;
-						}
-					}
-					
-				}
-				previous = p;
-			}
 
-			if (!mistake) {
+			if (!outOfBounds) {
 				valid = true;
 			}
 			else {
 				std::cout << "Positions were not inputted incrementaly next to each other, please try again" << std::endl;
 			}
 		}
-		positions[i] = temporaryP;
+		playerBoard->setPositions(temporaryP, i);
+		this->printShips();
 	}
-	playerBoard->setPositions(positions);
-	this->printShips();
 }
 
 void Player::printShips() {
