@@ -5,6 +5,7 @@ using std::cout, std::cin, std::endl;
 
 Board::Board() {
     this->size = 10;
+    this->shipsLeft = 5;
     ships.resize(5);
     for(auto ship : ships) {
         ship = nullptr;
@@ -12,42 +13,59 @@ Board::Board() {
     hits = std::vector<std::vector<char>> (size, std::vector<char>(size, ' '));
 }
 
-void Board::printGridShips(){
-  cout<<endl;
-  cout << endl << "   ";
-  for (int i = 0; i < size; i++) {
-      cout << "  " << i << "  ";
-  }
-  cout<< endl << "   ";
-  for (int i = 0; i < this->size; i++) {
-      cout << "-----";
-  }
-  for (int i = 0; i < this->size; i++) {
-      cout << std::endl;
-      cout << i;
-      for (int j = 0; j < this->size; j++) {
-          cout << " | ";
-          bool foundAShip = false;
-          for (auto ship : this->ships) {
-              if (ship != nullptr && ship->checkForPos(i, j)) {
-                  cout << ship->getChar();
-                  foundAShip = true;
-                  break;
-              }
-          }
-          if (!foundAShip) {
-              cout << " ";
-          }
-          cout << " ";
-          if (j == size - 1) {
-              cout << " |";
-          }
-      }
-      std::cout << endl << "   ";
-      for (int k = 0; k < size; k++) {
-          cout << "-----";
-      }
-  }
+void Board::printGridShips() {
+    cout << endl;
+    cout << endl << "   ";
+
+    // Print column headers
+    for (int i = 0; i < size; i++) {
+        cout << "  " << i << "  ";
+    }
+    cout << endl << "   ";
+
+    // Print top border
+    for (int i = 0; i < this->size; i++) {
+        cout << "-----";
+    }
+
+    // Print grid rows
+    for (int i = 0; i < this->size; i++) {
+        cout << std::endl;
+        cout << i;
+
+        // Print cells in the row
+        for (int j = 0; j < this->size; j++) {
+            cout << " | ";
+            bool foundAShip = false;
+
+            // Check if a ship exists at the current position
+            for (auto ship : this->ships) {
+                if (ship != nullptr && ship->checkForPos(i, j)) {
+                    cout << ship->getChar();
+                    foundAShip = true;
+                    break;
+                }
+            }
+
+            // If no ship is found, print a space
+            if (!foundAShip) {
+                cout << " ";
+            }
+            cout << " ";
+
+            // Close the row if it's the last column
+            if (j == size - 1) {
+                cout << " |";
+            }
+        }
+
+        // Print row border
+        std::cout << endl << "   ";
+        for (int k = 0; k < size; k++) {
+            cout << "-----";
+        }
+    }
+    cout << endl;
 }
 
 void Board::printGridHits() {
@@ -74,6 +92,7 @@ void Board::printGridHits() {
             cout << "-----";
         }
     }
+    cout << endl;
 }
 
 void Board::addShip(Ship* newShip) {
@@ -89,6 +108,11 @@ bool Board::hitPos(int x, int y) {
     for (auto ship : ships) {
         if (ship != nullptr && ship->checkForPos(x, y)) {
             hits[x][y] = 'X';
+            ship->hit();
+            if (ship->getHealth() == 0) {
+                std::cout << "Ship with " << ship->getPositions().size() << " health sunk!";
+                shipsLeft--;
+            }
             return true;
         }
     }
@@ -96,10 +120,14 @@ bool Board::hitPos(int x, int y) {
     return false;
 }
 
-void Board::setPositions(std::vector<Position> positions) {
-    for (auto ship : ships) {
-        for (auto p : positions) {
-            ship->pushPosition(p);
+void Board::setPositions(std::vector<std::vector<Position>> positions) {
+    for (int i = 0; i < ships.size(); i++) {
+        for (int j = 0; j < ships[i]->getHealth(); j++) {
+            ships[i]->pushPosition(positions[i][j]);
         }
     }
+}
+
+int Board::getShipsLeft() {
+    return shipsLeft;
 }

@@ -13,4 +13,5 @@ public:
     void pushPosition(Position newPos);
     void hit();
     bool checkForPos(int x, int y);
+    std::vector<Position> getPositions();
 };

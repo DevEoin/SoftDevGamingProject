@@ -33,3 +33,7 @@ bool Ship::checkForPos(int x, int y) {
     }
     return false;
 }
+
+std::vector<Position> Ship::getPositions() {
+    return positions;
+}
