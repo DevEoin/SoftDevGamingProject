@@ -11,7 +11,7 @@ public:
     char getChar();
     int getHealth();
     void pushPosition(Position newPos);
-    void hit();
+    void hit(int x, int y);
     bool checkForPos(int x, int y);
     std::vector<Position> getPositions();
 };

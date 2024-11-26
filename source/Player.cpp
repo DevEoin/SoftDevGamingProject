@@ -85,6 +85,7 @@ void Player::placeShips() {
 		positions[i] = temporaryP;
 	}
 	playerBoard->setPositions(positions);
+	this->printShips();
 }
 
 void Player::printShips() {

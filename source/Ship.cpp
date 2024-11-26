@@ -21,8 +21,13 @@ void Ship::pushPosition(Position newPos) {
     this->positions.push_back(newPos);
 }
 
-void Ship::hit() {
+void Ship::hit(int x, int y) {
     health--;
+    for (int i = 0; i < positions.size(); i++) {
+        if (x == this->positions[i].getX() && y == positions[i].getY()) {
+            this->positions.erase(positions.begin() + i);
+        }
+    }
 }
 
 bool Ship::checkForPos(int x, int y) {
