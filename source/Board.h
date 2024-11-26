@@ -5,10 +5,12 @@
 class Board {
     int size; // chess board is 8x8
     std::vector<Ship*> ships; // vector to store pieces
-    std::vector<std::vector<char>> hits;
+    
 public:
+    std::vector<std::vector<char>> hits;
     Board();
-    void printGrid();
+    void printGridShips();
+    void printGridHits();
     void addShip(Ship* newShip);
     bool hitPos(int x, int y);
 };
