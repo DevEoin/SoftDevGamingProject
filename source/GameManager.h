@@ -1,16 +1,17 @@
 #pragma once
-#include "Player.h"
+#include"EasyAI.h"
 
 
 class GameManager
 {
 	Player* player1;
 	Player* player2;
+	EasyAI* ai;
 	bool isGameOver;
 
 public:
 	//Game Managament
-	void startGame();
-
+	void startGamePvP();
+	void startGamePvE();
 };
 

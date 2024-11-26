@@ -1,8 +1,7 @@
-#include "AI.h"
+#include "Player.h"
 
-class EasyAI : public AI {
+class EasyAI : public Player {
 public:
-	EasyAI(Board* playerBoard);
+	EasyAI(std::string nameAI);
 	virtual void placeShips();
-	virtual void playTurn();
 };
