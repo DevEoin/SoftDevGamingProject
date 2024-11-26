@@ -3,7 +3,6 @@
 class AI {
 protected:
 	Board* aiBoard;
-	Board* playerBoard;
 
 public:
 	virtual void placeShips() = 0;

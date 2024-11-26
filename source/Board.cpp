@@ -95,3 +95,11 @@ bool Board::hitPos(int x, int y) {
     hits[x][y] = 'O';
     return false;
 }
+
+void Board::setPositions(std::vector<Position> positions) {
+    for (auto ship : ships) {
+        for (auto p : positions) {
+            ship->pushPosition(p);
+        }
+    }
+}
