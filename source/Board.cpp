@@ -108,7 +108,7 @@ bool Board::hitPos(int x, int y) {
     for (auto ship : ships) {
         if (ship != nullptr && ship->checkForPos(x, y)) {
             hits[x][y] = 'X';
-            ship->hit();
+            ship->hit(x, y);
             if (ship->getHealth() == 0) {
                 std::cout << "Ship with " << ship->getPositions().size() << " health sunk!";
                 shipsLeft--;

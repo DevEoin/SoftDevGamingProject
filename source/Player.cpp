@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <cmath>
 
 Player::Player(std::string name) {
 	this->name = name;
@@ -23,23 +24,45 @@ void Player::placeShips() {
 		positions[i] = std::vector<Position>(healths[i]);
 		std::vector<Position> temporaryP = std::vector<Position>(healths[i]);
 		while (!valid) {
-			for (int j = 0; j < healths[i]; j++) {
+			for (int j = 0; j < 1; j++) {
 				bool outOfBounds = true;
-				int x, y;
+				int x, y, xL, yL;
 				while (outOfBounds) {
 					std::cout << this->name <<" please enter the x value of the " << j + 1 << ". position of a " << healths[i] << " health ship: ";
 					std::cin >> x;
 					std::cout << this->name << " please enter the y value of the " << j + 1 << ". position of a " << healths[i] << " health ship: ";
 					std::cin >> y;
-					if ((x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
+					std::cout << this->name << " please enter the x value of the " << healths[i] << ". position of a " << healths[i] << " health ship: ";
+					std::cin >> xL;
+					std::cout << this->name << " please enter the y value of the " << healths[i] << ". position of a " << healths[i] << " health ship: ";
+					std::cin >> yL;
+					if ((x >= 0 && x <= 9) && (y >= 0 && y <= 9) && (xL >= 0 && xL <= 9) && (yL >= 0 && yL <= 9)) {
+						outOfBounds = false;
+					}
+					if ((x == xL && abs(y - yL) == healths[i] - 1) || (y == yL && abs(x - xL) == healths[i] - 1)) {
 						outOfBounds = false;
 					}
 					else {
 						std::cout << "Position out of bounds, please try again" << std::endl;
 					}
 				}
-				Position newPos{ x, y };
-				temporaryP[j] = newPos;
+				for (int k = 0; k < healths[i]; k++) {
+					Position newPos{ x, y };
+					temporaryP[k] = newPos;
+					if (x < xL && y == yL) {
+						x++;
+					}
+					else if (x > xL && y == yL)
+					{
+						x--;
+					}
+					else if (y < yL && x == xL) {
+						y++;
+					}
+					else if (y > yL && x == xL) {
+						y--;
+					}
+				}
 			}
 			Position previous{};
 			bool mistake = false;
