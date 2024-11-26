@@ -30,18 +30,23 @@ void GameManager::startGamePvP(){
 				}
 			}
 
-			if (player2->recieveHit(x1, y1)) {
-				std::cout << "Ship Hit " << "X: " << x1 << " Y: " << y1;
+			if (player2->checkAlreadyHit(x1, y1)) {
 				hit1 = true;
 			}
 			else {
-				hit1 = false;
-			}
+				if (player2->recieveHit(x1, y1)) {
+					std::cout << "Ship Hit " << "X: " << x1 << " Y: " << y1;
+					hit1 = true;
+				}
+				else {
+					hit1 = false;
+				}
 
-			player2->printHits();
-			if (player2->getPlayerShipsLeft() == 0) {
-				std::cout << "Player 1 wins!!!";
-				isGameOver = true;
+				player2->printHits();
+				if (player2->getPlayerShipsLeft() == 0) {
+					std::cout << "Player 1 wins!!!";
+					isGameOver = true;
+				}
 			}
 		} while (hit1 && !isGameOver);
 
@@ -67,18 +72,23 @@ void GameManager::startGamePvP(){
 				}
 			}
 			
-			if (player1->recieveHit(x2, y2)) {
-				std::cout << "Ship Hit " << "X: " << x2 << " Y: " << y2;
+			if (player1->checkAlreadyHit(x2, y2)) {
 				hit2 = true;
 			}
 			else {
-				hit2 = false;
-			}
+				if (player1->recieveHit(x2, y2)) {
+					std::cout << "Ship Hit " << "X: " << x2 << " Y: " << y2;
+					hit2 = true;
+				}
+				else {
+					hit2 = false;
+				}
 
-			player1->printHits();
-			if (player1->getPlayerShipsLeft() == 0) {
-				std::cout << "Player 2 wins!!!";
-				isGameOver = true;
+				player1->printHits();
+				if (player1->getPlayerShipsLeft() == 0) {
+					std::cout << "Player 2 wins!!!";
+					isGameOver = true;
+				}
 			}
 		} while (hit2 && !isGameOver);
 	}
@@ -86,7 +96,7 @@ void GameManager::startGamePvP(){
 
 void GameManager::startGamePvE() {
 	player1 = new Player("Player 1");
-	ai = new EasyAI("AI");
+	ai = new EasyAI("EasyAI");
 
 	ai->placeShips();
 	player1->placeShips();
@@ -113,18 +123,23 @@ void GameManager::startGamePvE() {
 				}
 			}
 
-			if (ai->recieveHit(x1, y1)) {
-				std::cout << "Ship Hit " << "X: " << x1 << " Y: " << y1;
+			if (ai->checkAlreadyHit(x1, y1)) {
 				hit1 = true;
 			}
 			else {
-				hit1 = false;
-			}
+				if (ai->recieveHit(x1, y1)) {
+					std::cout << "Ship Hit " << "X: " << x1 << " Y: " << y1;
+					hit1 = true;
+				}
+				else {
+					hit1 = false;
+				}
 
-			ai->printHits();
-			if (ai->getPlayerShipsLeft() == 0) {
-				std::cout << "Player 1 wins!!!";
-				isGameOver = true;
+				ai->printHits();
+				if (ai->getPlayerShipsLeft() == 0) {
+					std::cout << "Player 1 wins!!!";
+					isGameOver = true;
+				}
 			}
 		} while (hit1 && !isGameOver);
 
@@ -150,18 +165,23 @@ void GameManager::startGamePvE() {
 				}
 			}
 
-			if (player1->recieveHit(x2, y2)) {
-				std::cout << "Ship Hit " << "X: " << x2 << " Y: " << y2;
+			if (player1->checkAlreadyHit(x2, y2)) {
 				hit2 = true;
 			}
 			else {
-				hit2 = false;
-			}
+				if (player1->recieveHit(x2, y2)) {
+					std::cout << "Ship Hit " << "X: " << x2 << " Y: " << y2;
+					hit2 = true;
+				}
+				else {
+					hit2 = false;
+				}
 
-			player1->printHits();
-			if (player1->getPlayerShipsLeft() == 0) {
-				std::cout << "Player 2 wins!!!";
-				isGameOver = true;
+				player1->printHits();
+				if (player1->getPlayerShipsLeft() == 0) {
+					std::cout << "EasyAI wins!!!";
+					isGameOver = true;
+				}
 			}
 		} while (hit2 && !isGameOver);
 	}

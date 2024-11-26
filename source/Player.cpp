@@ -98,3 +98,7 @@ void Player::printHits() {
 int Player::getPlayerShipsLeft() {
     return playerBoard->getShipsLeft();
 }
+
+bool Player::checkAlreadyHit(int x, int y) {
+    return playerBoard->isPosHit(x, y);
+}

@@ -15,4 +15,5 @@ public:
     void setPositions(std::vector<Position> positions, int i);
     int getShipsLeft();
     bool isPosTaken(int x, int y);
+    bool isPosHit(int x, int y);
 };

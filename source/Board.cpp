@@ -105,10 +105,6 @@ void Board::addShip(Ship* newShip) {
 }
 
 bool Board::hitPos(int x, int y) {
-    if (hits[x][y] == 'O' || hits[x][y] == 'X') {
-        std::cout << "Position has already been fired upon, please try again" << std::endl;
-        return true;
-    }
     for (auto ship : ships) {
         if (ship != nullptr && ship->checkForPos(x, y)) {
             hits[x][y] = 'X';
@@ -138,6 +134,14 @@ bool Board::isPosTaken(int x, int y) {
         if (ship != nullptr && ship->checkForPos(x, y)) {
             return true;
         }
+    }
+    return false;
+}
+
+bool Board::isPosHit(int x, int y) {
+    if (hits[x][y] == 'X' || hits[x][y] == 'O') {
+        std::cout << "Position has already been fired upon, please try again" << std::endl;
+        return true;
     }
     return false;
 }
