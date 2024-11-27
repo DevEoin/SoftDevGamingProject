@@ -1,9 +1,17 @@
 #include "GameManager.h"
 #include <random>
 
-void GameManager::startGamePvP() {
-	// Initialize players
+GameManager::GameManager() {
 	player1 = new Player("Player 1"); // Create Player 1
+	isGameOver = false; // Initialize bool to false
+
+	//Initialize other pointers to nullptr
+	player2 = nullptr;
+	ai = nullptr;
+}
+
+void GameManager::startGamePvP() {
+	// Initialize player 2
 	player2 = new Player("Player 2"); // Create Player 2
 
 	// Players place their ships
@@ -114,8 +122,7 @@ void GameManager::startGamePvP() {
 }
 
 void GameManager::startGamePvE() {
-	// Initialize Player 1 and AI
-	player1 = new Player("Player 1");
+	// Initialize AI
 	ai = new EasyAI("EasyAI");
 
 	// Players and AI place their ships
@@ -220,5 +227,21 @@ void GameManager::startGamePvE() {
 				}
 			}
 		} while (hit2 && !isGameOver); // Repeat if AI hits and the game is not over
+	}
+}
+
+// Releases memory from pointers and makes each one a nullptr
+GameManager::~GameManager() {
+	delete player1;
+	player1 = nullptr;
+
+	if (player2 != nullptr) {
+		delete player2;
+		player2 = nullptr;
+	}
+
+	if (ai != nullptr) {
+		delete ai;
+		ai = nullptr;
 	}
 }

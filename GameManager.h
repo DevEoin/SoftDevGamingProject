@@ -10,7 +10,8 @@ class GameManager
 
 public:
 	// Game Management Functions
-
+	GameManager(); // Initializes player1 and isGameOver
 	void startGamePvP(); // Function to initiate a Player vs Player game (two human players)
 	void startGamePvE(); // Function to initiate a Player vs Easy AI game (human player vs EasyAI)
+	~GameManager(); // Destructor deallocates memory for member pointers
 };
