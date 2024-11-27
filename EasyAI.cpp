@@ -131,4 +131,5 @@ void EasyAI::placeShips() {
         playerBoard->setPositions(temporaryP, i);
         this->printShips(); // Display the updated board after placing the ship.
     }
+    std::cout << std::endl << std::endl << std::endl << std::endl;
 }

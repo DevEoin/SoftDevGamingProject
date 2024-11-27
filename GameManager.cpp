@@ -57,6 +57,7 @@ void GameManager::startGamePvP() {
 					hit1 = true;
 				}
 				else {
+					std::cout << "Miss " << "X: " << x1 << " Y: " << y1;
 					hit1 = false; // Missed hit
 				}
 
@@ -107,6 +108,7 @@ void GameManager::startGamePvP() {
 					hit2 = true;
 				}
 				else {
+					std::cout << "Miss " << "X: " << x2 << " Y: " << y2;
 					hit2 = false; // Missed hit
 				}
 
@@ -168,10 +170,10 @@ void GameManager::startGamePvE() {
 					hit1 = true;
 				}
 				else {
+					std::cout << "Miss " << "X: " << x1 << " Y: " << y1;
 					hit1 = false; // Missed hit
 				}
 
-				ai->printHits(); // Update the hits grid
 				// Check if AI has lost all ships
 				if (ai->getPlayerShipsLeft() == 0) {
 					std::cout << "Player 1 wins!!!"; // Player 1 wins
@@ -216,6 +218,7 @@ void GameManager::startGamePvE() {
 					hit2 = true;
 				}
 				else {
+					std::cout << "Miss " << "X: " << x2 << " Y: " << y2;
 					hit2 = false; // Missed hit
 				}
 
